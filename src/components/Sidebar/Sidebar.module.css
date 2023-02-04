@@ -1,0 +1,19 @@
+.sidebar {
+  background-color: antiquewhite;
+  grid-area: sidebar;
+  padding: 20px;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+a {
+  color: darkgreen;
+  text-decoration: none;
+}
+
+.active {
+  color: black;
+  text-decoration: underline;
+}

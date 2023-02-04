@@ -1,0 +1,23 @@
+.dialogs__wrapper {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    gap: 5px;
+}
+
+.dialogs {
+    margin: 10px;
+    background-color: white;
+}
+
+.dialog {
+    padding-bottom: 10px;
+}
+
+.messages {
+    margin: 10px;
+    background-color: white;
+}
+
+.message {
+    padding-bottom: 10px;
+}
