@@ -1,3 +1,8 @@
+.posts {
+  margin: 10px;
+}
+
+
 .posts__list {
   color: blue;
 }

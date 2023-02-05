@@ -5,6 +5,7 @@
 
 .profile {
   display: flex;
+  margin: 10px;
 }
 
 .profile__ava img {
