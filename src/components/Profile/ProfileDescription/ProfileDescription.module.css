@@ -1,0 +1,14 @@
+.content__img img {
+  width: 800px;
+  height: 100px;
+}
+
+.profile {
+  display: flex;
+  margin: 10px;
+}
+
+.profile__ava img {
+  width: 100px;
+  height: 100px;
+}
