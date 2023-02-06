@@ -1,4 +1,5 @@
-import {render} from "../render";
+let rerenderEntireTree = () => {}
+
 const state = {
     dialogsPage: {
         dialogsData: [
@@ -36,11 +37,15 @@ export const addPost = () => {
     }
     state.profilePage.postsData.push(newPost);
     state.profilePage.textAreaNewText = '';
-    render(state);
+    rerenderEntireTree();
 }
 
 export const handleTextAreaChange = (newText) => {
     state.profilePage.textAreaNewText = newText;
-    render(state);
+    rerenderEntireTree();
+}
+
+export const subscriber = (observer) => {
+    rerenderEntireTree = observer;
 }
 export default state;
