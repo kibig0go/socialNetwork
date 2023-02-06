@@ -1,7 +1,7 @@
 import React, {createRef} from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
-import {handleTextAreaChange} from "../../../redux/state";
+
 
 function Posts(props) {
 

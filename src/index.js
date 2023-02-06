@@ -8,10 +8,8 @@ import App from './App';
 import {addPost, handleTextAreaChange} from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
 
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export const render = () => {
+export const rerenderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -21,8 +19,8 @@ export const render = () => {
     );
 }
 
-render(state);
-subscriber(render)
+rerenderEntireTree(state);
+subscriber(rerenderEntireTree)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

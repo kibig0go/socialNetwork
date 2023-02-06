@@ -37,12 +37,12 @@ export const addPost = () => {
     }
     state.profilePage.postsData.push(newPost);
     state.profilePage.textAreaNewText = '';
-    rerenderEntireTree();
+    rerenderEntireTree(state);
 }
 
 export const handleTextAreaChange = (newText) => {
     state.profilePage.textAreaNewText = newText;
-    rerenderEntireTree();
+    rerenderEntireTree(state);
 }
 
 export const subscriber = (observer) => {
