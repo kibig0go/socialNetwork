@@ -21,3 +21,45 @@
 .message {
     padding-bottom: 10px;
 }
+
+.message__input_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.message__input {
+    width: 450px;
+    height: 20px;
+    border: none;
+}
+
+.message__input::placeholder {
+    font-size: 15px;
+    color: #bbbbbb;
+}
+
+input:focus {
+    outline: none;
+}
+
+.submit {
+    background-image: url(https://w7.pngwing.com/pngs/178/393/png-transparent-computer-icons-arrow-right-arrow-angle-text-triangle.png);
+    background-repeat: no-repeat;
+    display: block;
+    width: 20px;
+    height: 20px;
+    /*position: absolute;*/
+    /*left: 430px;*/
+    /*top: 12px;*/
+    background-size: 20px 20px;
+    outline: none;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+

@@ -1,26 +1,32 @@
-import React from "react";
+import React, {createRef} from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
+import {handleTextAreaChange} from "../../../redux/state";
 
-function Posts() {
+function Posts(props) {
 
-    const postsData = [
-        {id: 0, text: `It's my first post`, likesCount: 5},
-        {id: 1, text: `It's my second post`, likesCount: 2},
-        {id: 2, text: `It's my third post`, likesCount: 4}
-    ]
+    const postsElements = props.profilePageData.postsData.map( p => <Post text={p.text}/>)
 
-    const postsElements = postsData.map( p => <Post text={p.text}/>)
+    const newPostElement = React.createRef();
+
+    function addPost() {
+        props.addPost();
+    }
+
+    function handleTextAreaChange() {
+        const newText = newPostElement.current.value;
+        props.handleTextAreaChange(newText);
+    }
 
     return (
         <div className={s.posts}>
             <h2>My posts</h2>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement} onChange={handleTextAreaChange} value={props.profilePageData.textAreaNewText}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={ addPost }>Add post</button>
                 </div>
             </div>
             <div className={s.posts__list}>

@@ -1,30 +1,22 @@
 import React from "react";
-import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import Dialog from "./Dialog/Dialog";
-import Message from "./Message/Message";
+import s from './MessageInput.module.css'
 
 
-function Dialogs(props) {
+function MessageInput(props) {
 
-    const dialogsElements = props.state.dialogsData.map(d => <Dialog name={d.name} id={d.id}/>);
+    const newMessageText = React.createRef();
 
-    const messageElements = props.state.messagesData.map(m => <Message text={m.text}/>);
+    function sendMessage() {
+        const text = newMessageText.current.value;
+        alert(text);
+    }
 
     return (
-        <div className={s.dialogs__wrapper}>
-            <div className={s.dialogs}>
-                {dialogsElements}
-            </div>
-            <div className={s.messages}>
-                { messageElements }
-                <div className={s.message__input_wrapper}>
-                    <input type='text' className={s.message__input} placeholder='Сообщение'/>
-                    <input type='submit' className={s.submit} value=''/>
-                </div>
-            </div>
+        <div className={s.message__input_wrapper}>
+            <input type='text' className={s.message__input} placeholder='Сообщение' ref={newMessageText}/>
+            <input type='submit' className={s.submit} value='' onClick={ sendMessage }/>
         </div>
     )
 }
 
-export default Dialogs;
+export default MessageInput;
