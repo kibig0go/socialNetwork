@@ -12,7 +12,7 @@ function Profile(props) {
                 <img src='https://img.freepik.com/free-photo/grunge-paint-background_1409-1337.jpg?w=2000'/>
             </div>
             <ProfileDescription/>
-            <Posts profilePageData={props.profilePageData} addPost={props.addPost} handleTextAreaChange={props.handleTextAreaChange}/>
+            <Posts profilePageData={props.profilePageData} dispatch={props.dispatch}/>
         </div>
     )
 }

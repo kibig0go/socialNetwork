@@ -10,12 +10,13 @@ function Posts(props) {
     const newPostElement = React.createRef();
 
     function addPost() {
-        props.addPost();
+        props.dispatch({type: 'ADD_POST'});
     }
 
     function handleTextAreaChange() {
         const newText = newPostElement.current.value;
-        props.handleTextAreaChange(newText);
+        let action = {type: 'HANDLE_TEXT_AREA_CHANGE', text: newText};
+        props.dispatch(action);
     }
 
     return (

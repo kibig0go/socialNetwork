@@ -32,24 +32,40 @@ const store = {
     _callSubscriber() {
         alert('da');
     },
-    addPost() {
-        const newPost = {
-            id: 3,
-            text: this._state.profilePage.textAreaNewText,
-            likesCount: 0
-        }
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.textAreaNewText = '';
-        this._callSubscriber(this._state);
-    },
-    handleTextAreaChange(newText) {
-        this._state.profilePage.textAreaNewText = newText;
-        this._callSubscriber(this._state);
-    },
+    // addPost() {
+    //     const newPost = {
+    //         id: 3,
+    //         text: this._state.profilePage.textAreaNewText,
+    //         likesCount: 0
+    //     }
+    //     this._state.profilePage.postsData.push(newPost);
+    //     this._state.profilePage.textAreaNewText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // handleTextAreaChange(newText) {
+    //     this._state.profilePage.textAreaNewText = newText;
+    //     this._callSubscriber(this._state);
+    // },
     subscriber(observer) {
         this._callSubscriber = observer;
     },
-
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD_POST':
+                const newPost = {
+                    id: 3,
+                    text: this._state.profilePage.textAreaNewText,
+                    likesCount: 0
+                }
+                this._state.profilePage.postsData.push(newPost);
+                this._state.profilePage.textAreaNewText = '';
+                this._callSubscriber(this._state);
+                break;
+            case 'HANDLE_TEXT_AREA_CHANGE':
+                this._state.profilePage.textAreaNewText = action.text;
+                this._callSubscriber(this._state);
+        }
+    }
 }
 
 window.store = store;
