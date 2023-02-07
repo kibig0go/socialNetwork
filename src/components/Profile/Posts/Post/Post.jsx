@@ -4,7 +4,7 @@ import s from './Post.module.css'
 function Post(props) {
     return (
         <div>
-            post 1
+            post
             {props.text}
         </div>
     )
