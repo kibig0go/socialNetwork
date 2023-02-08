@@ -1,32 +1,9 @@
-export function createActionAddPost() {
-    const action = {
-        type: 'ADD_POST'
-    };
-    return action;
-}
+import {profileReducer} from "./reducer/profile_reducer";
+import {dialogsReducer} from "./reducer/dialogs_reducer";
 
-export function createActionHandleTextAreaChange(newText) {
-    const action = {
-        type: 'HANDLE_TEXT_AREA_CHANGE',
-        text: newText,
-    }
-    return action;
-}
 
-export function createActionHandleMessageTextChange(newText) {
-    const action = {
-        type: 'HANDLE_MESSAGE_TEXT_CHANGE',
-        messageText: newText,
-    }
-    return action;
-}
 
-export function createActionSendMessage() {
-    const action = {
-        type: 'SEND_MESSAGE'
-    };
-    return action;
-}
+
 
 const store = {
     _state: {
@@ -68,34 +45,11 @@ const store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case 'ADD_POST':
-                const newPost = {
-                    id: 3,
-                    text: this._state.profilePage.textAreaNewText,
-                    likesCount: 0
-                }
-                this._state.profilePage.postsData.push(newPost);
-                this._state.profilePage.textAreaNewText = '';
-                this._callSubscriber(this._state);
-                break;
-            case 'HANDLE_TEXT_AREA_CHANGE':
-                this._state.profilePage.textAreaNewText = action.text;
-                this._callSubscriber(this._state);
-                break;
-            case 'HANDLE_MESSAGE_TEXT_CHANGE':
-                this._state.dialogsPage.textAreaText = action.messageText;
-                this._callSubscriber(this._state);
-                break;
-            case 'SEND_MESSAGE':
-                const newMessage = {
-                    id: 0,
-                    text: this._state.dialogsPage.textAreaText
-                };
-                this._state.dialogsPage.messagesData.push(newMessage);
-                this._state.dialogsPage.textAreaText = '';
-                this._callSubscriber(this._state);
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+        this._callSubscriber(this._state);
     }
 }
 

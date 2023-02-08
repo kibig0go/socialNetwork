@@ -1,6 +1,6 @@
 import React from "react";
 import s from './MessageInput.module.css'
-import {createActionHandleMessageTextChange, createActionSendMessage} from "../../../redux/state";
+import {createActionHandleMessageTextChange, createActionSendMessage} from "../../../redux/reducer/dialogs_reducer";
 
 
 function MessageInput(props) {

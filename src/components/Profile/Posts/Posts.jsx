@@ -1,8 +1,7 @@
 import React, {createRef} from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
-import {createActionHandleTextAreaChange} from "../../../redux/state";
-import {createActionAddPost} from "../../../redux/state";
+import {createActionHandleTextAreaChange, createActionAddPost} from "../../../redux/reducer/profile_reducer";
 
 
 function Posts(props) {
