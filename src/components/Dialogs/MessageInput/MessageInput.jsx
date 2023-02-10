@@ -8,13 +8,13 @@ function MessageInput(props) {
     // const newMessageText = React.createRef();
 
     function sendMessage() {
-        props.dispatch(createActionSendMessage())
+        props.onSendMessage();
         // alert(text);
     }
 
     function handleMessageInputChange(e) {
         const newText = e.target.value;
-        props.dispatch(createActionHandleMessageTextChange(newText))
+        props.onHandleMessageInputChangedispatch(newText);
     }
 
 

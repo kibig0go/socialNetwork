@@ -1,10 +1,6 @@
 import {profileReducer} from "./reducer/profile_reducer";
 import {dialogsReducer} from "./reducer/dialogs_reducer";
 
-
-
-
-
 const store = {
     _state: {
         dialogsPage: {
@@ -40,7 +36,7 @@ const store = {
     _callSubscriber() {
         alert('da');
     },
-    subscriber(observer) {
+    subscribe(observer) {
         this._callSubscriber = observer;
     },
 

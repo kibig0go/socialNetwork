@@ -1,4 +1,13 @@
-export const profileReducer = (state, action) => {
+const initialState = {
+    postsData: [
+        {id: 0, text: `It's my first post`, likesCount: 5},
+        {id: 1, text: `It's my second post`, likesCount: 2},
+        {id: 2, text: `It's my third post`, likesCount: 4}
+    ],
+    textAreaNewText: '',
+}
+
+export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_POST':
             const newPost = {
@@ -12,7 +21,8 @@ export const profileReducer = (state, action) => {
         case 'HANDLE_TEXT_AREA_CHANGE':
             state.textAreaNewText = action.text;
             return state;
-        default: return state;
+        default:
+            return state;
     }
 
 }
