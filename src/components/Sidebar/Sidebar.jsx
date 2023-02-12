@@ -36,6 +36,12 @@ function Sidebar() {
                     }
                     >Settings</NavLink>
                 </li>
+                <li className={s.item}>
+                    <NavLink to='/users' className={
+                        ({isActive}) => isActive ? s.active : undefined
+                    }
+                    >Users</NavLink>
+                </li>
             </ul>
         </div>
     )
