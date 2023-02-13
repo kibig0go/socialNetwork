@@ -1,0 +1,61 @@
+button {
+    border: 1px solid black;
+    background: none;
+    border-radius: 50px;
+}
+button:hover {
+    background-color: rgb(136, 198, 198);
+}
+
+.pages_number_holder {
+    margin: 10px;
+}
+
+.users__holder {
+    margin: 10px;
+    margin-left: 0;
+}
+
+.user__holder {
+    margin-bottom: 10px;
+}
+
+.user__avatar {
+    background-color: transparent;
+    height: 70px;
+    width: 70px;
+}
+
+.pagesButton {
+    width: 30px;
+    height: 20px;
+    transition: all .2s;
+    margin-right: 3px;
+}
+
+.name__holder {
+    margin-bottom: 5px;
+}
+
+.followButton {
+    width: 80px;
+    height: 40px;
+    transition: all .2s;
+}
+
+.followButton:hover {
+    background-color: #51ff00;
+}
+
+.unfollowButton {
+    width: 60px;
+    height: 20px;
+    transition: all .2s;
+}
+.unfollowButton:hover {
+    background-color: #c63f3f;
+}
+
+.selected {
+    font-weight: bold;
+}

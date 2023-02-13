@@ -24,7 +24,10 @@ const initialState = {
         //     country: 'Russia',
         //     city: 'Moscow'
         // },
-    ]
+    ],
+    currentPage: 1,
+    count: 10,
+    total: 0,
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -33,7 +36,7 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    return u.id === action.userId ? {...u, isFollowed: true} : u;
+                    return u.id === action.userId ? {...u, followed: true} : u;
                 })
             }
         }
@@ -41,13 +44,22 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    return u.id === action.userId ? {...u, isFollowed: false} : u;
+                    return u.id === action.userId ? {...u, followed: false} : u;
                 })
             }
         case 'SET_USERS':
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
+            }
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state,
+                currentPage: action.number
+            }
+        case 'SET_TOTAL':
+            return {
+                ...state, total: action.total
             }
         default:
             return state;
@@ -74,5 +86,19 @@ export function setUsersAC(users) {
     return {
         type: 'SET_USERS',
         users: users
+    }
+}
+
+export function setCurrentPageAC(number) {
+    return {
+        type: 'SET_CURRENT_PAGE',
+        number
+    }
+}
+
+export function setTotalAC(total) {
+    return {
+        type: 'SET_TOTAL',
+        total
     }
 }
