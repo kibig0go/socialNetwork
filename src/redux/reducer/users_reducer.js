@@ -28,6 +28,7 @@ const initialState = {
     currentPage: 1,
     count: 10,
     total: 5,
+    isFetching: false
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -60,6 +61,10 @@ export const usersReducer = (state = initialState, action) => {
         case 'SET_TOTAL':
             return {
                 ...state, total: action.total
+            }
+        case 'TOGGLE_IS_FETCHING':
+            return {
+                ...state, isFetching: action.isFetching
             }
         default:
             return state;
@@ -100,5 +105,12 @@ export function setTotalAC(total) {
     return {
         type: 'SET_TOTAL',
         total
+    }
+}
+
+export function toggleToggleIsFetchingAC(isFetching) {
+    return {
+        type: 'TOGGLE_IS_FETCHING',
+        isFetching
     }
 }
