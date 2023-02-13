@@ -27,7 +27,7 @@ const initialState = {
     ],
     currentPage: 1,
     count: 10,
-    total: 0,
+    total: 5,
 }
 
 export const usersReducer = (state = initialState, action) => {
