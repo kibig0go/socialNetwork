@@ -10,7 +10,6 @@ import {
     unfollowAc
 } from "../../redux/reducer/users_reducer";
 import axios from "axios";
-import preloader from './../../assets/images/hug.gif';
 import Preloader from "../common/Preloader/Preloader";
 
 

@@ -7,9 +7,9 @@ import MessageInput from "./MessageInput/MessageInput";
 
 function Dialogs(props) {
 
-    const dialogsElements = props.dialogsData.map(d => <Dialog name={d.name} id={d.id}/>);
+    const dialogsElements = props.dialogsData.map(d => <Dialog name={d.name} key={d.id}/>);
 
-    const messageElements = props.messagesData.map(m => <Message text={m.text}/>);
+    const messageElements = props.messagesData.map(m => <Message key={m.id} text={m.text}/>);
 
     return (
         <div className={s.dialogs__wrapper}>
