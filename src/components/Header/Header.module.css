@@ -6,3 +6,11 @@
 .header img {
     width: 40px;
 }
+
+.login {
+    color: red;
+}
+
+.auth__wrapper {
+    float: right;
+}

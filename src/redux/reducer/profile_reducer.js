@@ -5,6 +5,8 @@ const initialState = {
         {id: 2, text: `It's my third post`, likesCount: 4}
     ],
     textAreaNewText: '',
+    userData: null,
+    isFetching: false
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -30,6 +32,15 @@ export const profileReducer = (state = initialState, action) => {
                 textAreaNewText: action.text
             };
         }
+        case 'SET_USER_DATA':
+            return {
+                ...state,
+                userData: action.userData
+            }
+        case 'TOGGLE_IS_FETCHING':
+            return {
+                ...state, isFetching: action.isFetching
+            }
         default:
             return state;
     }
@@ -50,3 +61,11 @@ export function createActionHandleTextAreaChange(newText) {
     }
     return action;
 }
+
+export function setUser(userData) {
+    return {
+        type: 'SET_USER_DATA',
+        userData
+    }
+}
+

@@ -71,7 +71,7 @@ export const usersReducer = (state = initialState, action) => {
     }
 }
 
-export function followAC(userId) {
+export function follow(userId) {
     const action = {
         type: 'FOLLOW',
         userId,
@@ -79,7 +79,7 @@ export function followAC(userId) {
     return action;
 }
 
-export function unfollowAc(userId) {
+export function unfollow(userId) {
     const action = {
         type: 'UNFOLLOW',
         userId
@@ -87,30 +87,31 @@ export function unfollowAc(userId) {
     return action;
 }
 
-export function setUsersAC(users) {
+export function setUsers(users) {
     return {
         type: 'SET_USERS',
         users: users
     }
 }
 
-export function setCurrentPageAC(number) {
+export function setCurrentPage(number) {
     return {
         type: 'SET_CURRENT_PAGE',
         number
     }
 }
 
-export function setTotalAC(total) {
+export function setTotal(total) {
     return {
         type: 'SET_TOTAL',
         total
     }
 }
 
-export function toggleToggleIsFetchingAC(isFetching) {
+export function toggleToggleIsFetching(isFetching) {
     return {
         type: 'TOGGLE_IS_FETCHING',
         isFetching
     }
 }
+
