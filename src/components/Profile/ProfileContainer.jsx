@@ -5,6 +5,7 @@ import axios from "axios";
 import {setUser} from "../../redux/reducer/profile_reducer";
 import {useParams} from 'react-router-dom';
 import {toggleToggleIsFetching} from "../../redux/reducer/users_reducer";
+import {api} from "../../api/api";
 
 export function withRouter(Children) {
     return (props) => {
@@ -24,11 +25,11 @@ class ProfileContainer extends React.Component {
             userId = 2
         }
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/${userId}`)
-            .then(response => {
+        api.getProfile(userId)
+            .then(data => {
                 // console.log(response);
                 this.props.toggleIsFetching(false)
-                this.props.setUser(response.data)
+                this.props.setUser(data)
             })
     }
 

@@ -1,34 +1,12 @@
+const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS'
+
 const initialState = {
-    users: [
-        // {
-        //     id: '1',
-        //     fullName: 'Boris Kitaev',
-        //     isFollowed: true,
-        //     status: `I'm a boss`,
-        //     country: 'Russia',
-        //     city: 'Moscow'
-        // },
-        // {
-        //     id: '2',
-        //     fullName: 'Andrew Kuler',
-        //     isFollowed: false,
-        //     status: `I'm a looser`,
-        //     country: 'Russia',
-        //     city: 'Moscow'
-        // },
-        // {
-        //     id: '3',
-        //     fullName: 'Igor Caene',
-        //     isFollowed: true,
-        //     status: `I like porshe`,
-        //     country: 'Russia',
-        //     city: 'Moscow'
-        // },
-    ],
+    users: [],
     currentPage: 1,
     count: 10,
     total: 5,
-    isFetching: false
+    isFetching: false,
+    followingInProgress:[]
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -65,6 +43,14 @@ export const usersReducer = (state = initialState, action) => {
         case 'TOGGLE_IS_FETCHING':
             return {
                 ...state, isFetching: action.isFetching
+            }
+        case 'TOGGLE_FOLLOWING_IN_PROGRESS':
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+
             }
         default:
             return state;
@@ -114,4 +100,13 @@ export function toggleToggleIsFetching(isFetching) {
         isFetching
     }
 }
+
+export function toggleFollowingInProgress(isFetching, userId) {
+    return {
+        type: 'TOGGLE_FOLLOWING_IN_PROGRESS',
+        isFetching,
+        userId
+    }
+}
+
 
