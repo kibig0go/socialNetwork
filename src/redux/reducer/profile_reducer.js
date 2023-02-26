@@ -1,3 +1,6 @@
+import {api} from "../../api/api";
+import {toggleIsFetching} from "./users_reducer";
+
 const initialState = {
     postsData: [
         {id: 0, text: `It's my first post`, likesCount: 5},
@@ -32,7 +35,7 @@ export const profileReducer = (state = initialState, action) => {
                 textAreaNewText: action.text
             };
         }
-        case 'SET_USER_DATA':
+        case 'SET_PROFILE_DATA':
             return {
                 ...state,
                 userData: action.userData
@@ -64,8 +67,17 @@ export function createActionHandleTextAreaChange(newText) {
 
 export function setUser(userData) {
     return {
-        type: 'SET_USER_DATA',
+        type: 'SET_PROFILE_DATA',
         userData
     }
 }
 
+export const getProfileInfo = (userId) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    api.getProfile(userId)
+        .then(data => {
+            // console.log(response);
+            dispatch(toggleIsFetching(false));
+            dispatch(setUser(data))
+        })
+}

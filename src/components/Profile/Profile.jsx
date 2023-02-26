@@ -13,8 +13,8 @@ function Profile(props) {
             <div className={s.content__img}>
                 <img src='https://img.freepik.com/free-photo/grunge-paint-background_1409-1337.jpg?w=2000'/>
             </div>
-            {props.isFetching ? <Preloader/> : null}
-            <ProfileDescription userData={props.userData}/>
+            {props.isFetching ? <Preloader/> : <ProfileDescription userData={props.userData}/>}
+
             <PostsContainer />
         </div>
     )

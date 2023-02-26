@@ -1,3 +1,5 @@
+import {api} from "../../api/api";
+
 const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS'
 
 const initialState = {
@@ -57,7 +59,7 @@ export const usersReducer = (state = initialState, action) => {
     }
 }
 
-export function follow(userId) {
+export function followSuccess(userId) {
     const action = {
         type: 'FOLLOW',
         userId,
@@ -65,7 +67,7 @@ export function follow(userId) {
     return action;
 }
 
-export function unfollow(userId) {
+export function unfollowSuccess(userId) {
     const action = {
         type: 'UNFOLLOW',
         userId
@@ -94,18 +96,59 @@ export function setTotal(total) {
     }
 }
 
-export function toggleToggleIsFetching(isFetching) {
+export function toggleIsFetching(isFetching) {
     return {
         type: 'TOGGLE_IS_FETCHING',
         isFetching
     }
 }
 
-export function toggleFollowingInProgress(isFetching, userId) {
+export function toggleFollowing(isFetching, userId) {
     return {
         type: 'TOGGLE_FOLLOWING_IN_PROGRESS',
         isFetching,
         userId
+    }
+}
+
+export const getUsers = (currentPage, count) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        api.getUsers(currentPage, count)
+            .then(data => {
+                dispatch(toggleIsFetching(false));
+                // console.log(response);
+                dispatch(setUsers(data.items));
+                dispatch(setTotal(data.totalCount));
+            })
+    }
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId));
+        api.follow(userId)
+            .then(data => {
+                // debugger
+                if (data.resultCode === 0) {
+                    dispatch(followSuccess(userId));
+                }
+                dispatch(toggleFollowing(false, userId));
+            })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId));
+        api.unfollow(userId)
+            .then(data => {
+                // debugger
+                if (data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId));
+                }
+                dispatch(toggleFollowing(false, userId));
+            })
     }
 }
 

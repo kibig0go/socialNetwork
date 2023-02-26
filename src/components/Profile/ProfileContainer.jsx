@@ -2,9 +2,9 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import axios from "axios";
-import {setUser} from "../../redux/reducer/profile_reducer";
+import {getProfileInfo, setUser} from "../../redux/reducer/profile_reducer";
 import {useParams} from 'react-router-dom';
-import {toggleToggleIsFetching} from "../../redux/reducer/users_reducer";
+import {toggleIsFetching} from "../../redux/reducer/users_reducer";
 import {api} from "../../api/api";
 
 export function withRouter(Children) {
@@ -18,19 +18,11 @@ export function withRouter(Children) {
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        console.log('mount')
-        // debugger
         let userId = this.props.match.params.userId
-        if (this.props.match.params.userId === undefined) {
-            userId = 2
+        if (!this.props.match.params.userId) {
+            userId = this.props.me ? this.props.me : 2;
         }
-        this.props.toggleIsFetching(true)
-        api.getProfile(userId)
-            .then(data => {
-                // console.log(response);
-                this.props.toggleIsFetching(false)
-                this.props.setUser(data)
-            })
+        this.props.getProfileInfo(userId);
     }
 
     render() {
@@ -43,7 +35,8 @@ class ProfileContainer extends React.Component {
 function mapStateToProps(state) {
     return {
         userData: state.profilePage.userData,
-        isFetching: state.profilePage.isFetching
+        isFetching: state.profilePage.isFetching,
+        me: state.auth.userId
     }
 }
 
@@ -51,5 +44,6 @@ const ProfileURLContainer = withRouter(ProfileContainer);
 
 export default connect(mapStateToProps, {
     setUser: setUser,
-    toggleIsFetching: toggleToggleIsFetching,
+    toggleIsFetching: toggleIsFetching,
+    getProfileInfo
 })(ProfileURLContainer)
