@@ -10,7 +10,8 @@ import {
     unfollow
 } from "../../redux/reducer/users_reducer";
 import Preloader from "../common/Preloader/Preloader";
-import {api} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersApiContainer extends React.Component {
@@ -49,13 +50,28 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    follow: follow,
-    unfollow: unfollow,
-    setUsers: setUsers,
-    setCurrentPage: setCurrentPage,
-    setTotal: setTotal,
-    toggleIsFetching: toggleIsFetching,
-    toggleFollowing: toggleFollowing,
-    getUsers
-})(UsersApiContainer);
+const UsersContainer = compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        follow: follow,
+        unfollow: unfollow,
+        setUsers: setUsers,
+        setCurrentPage: setCurrentPage,
+        setTotal: setTotal,
+        toggleIsFetching: toggleIsFetching,
+        toggleFollowing: toggleFollowing,
+        getUsers
+    })
+)(UsersApiContainer)
+
+export default UsersContainer
+// export default withAuthRedirect(connect(mapStateToProps, {
+//     follow: follow,
+//     unfollow: unfollow,
+//     setUsers: setUsers,
+//     setCurrentPage: setCurrentPage,
+//     setTotal: setTotal,
+//     toggleIsFetching: toggleIsFetching,
+//     toggleFollowing: toggleFollowing,
+//     getUsers
+// })(UsersApiContainer));
