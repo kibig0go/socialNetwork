@@ -7,7 +7,9 @@ import {api} from "../../api/api";
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        this.props.me()
+        this.props.me();
+        console.log('запрос')
+        // console.log('ddd')
     }
 
     render() {

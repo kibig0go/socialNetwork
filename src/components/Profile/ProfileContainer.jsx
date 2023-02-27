@@ -1,13 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import axios from "axios";
 import {getProfileInfo, setUser} from "../../redux/reducer/profile_reducer";
 import {Navigate, useParams} from 'react-router-dom';
 import {toggleIsFetching} from "../../redux/reducer/users_reducer";
-import {api} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import state from "../../redux/state";
+import {compose} from "redux";
 
 export function withRouter(Children) {
     return (props) => {
@@ -28,26 +26,40 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        // alert(this.props.isAuth)
+        // console.log(this.props)
         return (
             <Profile {...this.props} userData={this.props.userData}/>
         )
     }
 }
 
-const AuthRedirectContainer = withAuthRedirect(ProfileContainer)
+// const AuthRedirectContainer = withAuthRedirect(ProfileContainer)
+//
+// const ProfileURLContainer = withRouter(AuthRedirectContainer);
 
 function mapStateToProps(state) {
     return {
         userData: state.profilePage.userData,
         isFetching: state.profilePage.isFetching,
         me: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 }
 
-const ProfileURLContainer = withRouter(AuthRedirectContainer);
 
-export default connect(mapStateToProps, {
-    setUser: setUser,
-    toggleIsFetching: toggleIsFetching,
-    getProfileInfo
-})(ProfileURLContainer)
+// export default connect(mapStateToProps, {
+//     setUser: setUser,
+//     toggleIsFetching: toggleIsFetching,
+//     getProfileInfo
+// })(ProfileURLContainer)
+
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        setUser: setUser,
+        toggleIsFetching: toggleIsFetching,
+        getProfileInfo
+    }),
+    withRouter,
+)(ProfileContainer)
