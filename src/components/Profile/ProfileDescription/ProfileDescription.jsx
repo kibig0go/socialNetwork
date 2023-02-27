@@ -2,13 +2,16 @@ import React from "react";
 import  s from "./ProfileDescription.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ava from "../../../assets/images/ava.png";
+import ProfileStatus from './ProfileStatus'
+
+
 
 function ProfileDescription(props) {
     if (!props.userData) {
         return <Preloader/>
     }
     // debugger
-    console.log(props)
+    // console.log(props)
 
     return (
 
@@ -20,6 +23,7 @@ function ProfileDescription(props) {
             <div className={s.profile__descr}>
                 <div>
                     <h3>{props.userData.fullName}</h3>
+                    <ProfileStatus status={'hey hey hey'}/>
                 </div>
                 <div>
                     {/*<h3>date</h3>*/}
