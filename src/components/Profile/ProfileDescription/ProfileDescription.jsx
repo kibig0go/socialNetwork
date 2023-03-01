@@ -23,7 +23,7 @@ function ProfileDescription(props) {
             <div className={s.profile__descr}>
                 <div>
                     <h3>{props.userData.fullName}</h3>
-                    <ProfileStatus status={'hey hey hey'}/>
+                    <ProfileStatus status={props.status}  updateStatus={props.updateStatus}/>
                 </div>
                 <div>
                     {/*<h3>date</h3>*/}

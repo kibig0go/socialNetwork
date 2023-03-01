@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
@@ -10,15 +9,15 @@ const instance = axios.create({
 })
 export const api = {
     getUsers(currentPage, count) {
-        return  instance.get(`users?page=${currentPage}&count=${count}`)
+        return instance.get(`users?page=${currentPage}&count=${count}`)
             .then(response => response.data)
     },
     isLoggedIn() {
-        return  instance.get(`auth/me`)
+        return instance.get(`auth/me`)
             .then(response => response.data)
     },
     getProfile(userId) {
-        return  instance.get(`/profile/${userId}`)
+        return instance.get(`/profile/${userId}`)
             .then(response => response.data)
     },
     unfollow(userId) {
@@ -27,6 +26,17 @@ export const api = {
     },
     follow(userId) {
         return instance.post(`follow/${userId}`, {})
+            .then(response => response.data)
+    }
+}
+
+export const profileApi = {
+    getStatus(userId) {
+        return instance.get(`/profile/status/${userId}`)
+            .then(response => response.data)
+    },
+    updateStatus(status) {
+        return instance.put(`/profile/status`, { status: status })
             .then(response => response.data)
     }
 }

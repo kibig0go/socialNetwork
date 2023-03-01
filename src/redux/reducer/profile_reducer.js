@@ -1,4 +1,4 @@
-import {api} from "../../api/api";
+import {api, profileApi} from "../../api/api";
 import {toggleIsFetching} from "./users_reducer";
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
     ],
     textAreaNewText: '',
     userData: null,
-    isFetching: false
+    isFetching: false,
+    status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -28,9 +29,9 @@ export const profileReducer = (state = initialState, action) => {
                 ],
                 textAreaNewText: ''
             };
-                    }
+        }
         case 'HANDLE_TEXT_AREA_CHANGE': {
-            return  {
+            return {
                 ...state,
                 textAreaNewText: action.text
             };
@@ -43,6 +44,10 @@ export const profileReducer = (state = initialState, action) => {
         case 'TOGGLE_IS_FETCHING':
             return {
                 ...state, isFetching: action.isFetching
+            }
+        case 'SET_STATUS':
+            return {
+                ...state, status: action.status
             }
         default:
             return state;
@@ -72,6 +77,13 @@ export function setUser(userData) {
     }
 }
 
+export function setStatus(status) {
+    return {
+        type: 'SET_STATUS',
+        status
+    }
+}
+
 export const getProfileInfo = (userId) => (dispatch) => {
     dispatch(toggleIsFetching(true));
     api.getProfile(userId)
@@ -79,5 +91,29 @@ export const getProfileInfo = (userId) => (dispatch) => {
             // console.log(response);
             dispatch(toggleIsFetching(false));
             dispatch(setUser(data))
+        })
+}
+
+export const getUserStatus = (userId) => (dispatch) => {
+    // dispatch(toggleIsFetching(true));
+    profileApi.getStatus(userId)
+        .then(status => {
+            // console.log(response);
+            // dispatch(toggleIsFetching(false));
+            dispatch(setStatus(status))
+        })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    // dispatch(toggleIsFetching(true));
+    profileApi.updateStatus(status)
+        .then(data => {
+            // console.log(response);
+            // dispatch(toggleIsFetching(false));
+            if (data.resultCode === 0) {
+                dispatch(setStatus(status))
+            } else {
+                console.log('status error')
+            }
         })
 }

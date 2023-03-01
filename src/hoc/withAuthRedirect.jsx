@@ -19,7 +19,7 @@ export const withAuthRedirect = (Component) => {
             // if (this.props.isFetching) return <Preloader/>
             if (!this.props.isAuth) return <Navigate to='/login'/>
             return <Component {...this.props}/>
-
+            // if (this.props.isAuth) return <Navigate to={'profile'} />
         }
     }
     // debugger
