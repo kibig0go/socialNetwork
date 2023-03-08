@@ -14,7 +14,7 @@ export const withAuthRedirect = (Component) => {
 
         render() {
             // debugger
-            console.log(this.props)
+            // console.log(this.props)
             // alert(this.props.isAuth)
             // if (this.props.isFetching) return <Preloader/>
             if (!this.props.isAuth) return <Navigate to='/login'/>

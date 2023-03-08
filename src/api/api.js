@@ -12,10 +12,6 @@ export const api = {
         return instance.get(`users?page=${currentPage}&count=${count}`)
             .then(response => response.data)
     },
-    isLoggedIn() {
-        return instance.get(`auth/me`)
-            .then(response => response.data)
-    },
     getProfile(userId) {
         return instance.get(`/profile/${userId}`)
             .then(response => response.data)
@@ -27,7 +23,11 @@ export const api = {
     follow(userId) {
         return instance.post(`follow/${userId}`, {})
             .then(response => response.data)
-    }
+    },
+    isLoggedIn() {
+        console.log('obsolete method. use loginApi')
+        return loginApi.isLoggedIn()
+    },
 }
 
 export const profileApi = {
@@ -39,4 +39,23 @@ export const profileApi = {
         return instance.put(`/profile/status`, { status: status })
             .then(response => response.data)
     }
+}
+
+export const loginApi = {
+    login(email, password, rememberMe = false) {
+        return instance.post('/auth/login', {
+            email,
+            password,
+            rememberMe
+        })
+            .then(response => response.data)
+    },
+    logout() {
+        return instance.delete('/auth/login')
+            .then(response => response.data)
+    },
+    isLoggedIn() {
+        return instance.get(`auth/me`)
+            .then(response => response.data)
+    },
 }

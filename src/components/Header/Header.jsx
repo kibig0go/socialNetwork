@@ -9,7 +9,9 @@ function Header(props) {
             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/BMW_logo_%28gray%29.svg/2048px-BMW_logo_%28gray%29.svg.png' />
 
             <div className={s.auth__wrapper}>
-                {props.isAuth ? props.login : <NavLink to='/login' className={s.login}>Login</NavLink>}
+                {props.isAuth
+                    ? <div>{props.login} <button onClick={props.logout}>Logout</button></div>
+                    : <NavLink to='/login' className={s.login}>Login</NavLink>}
             </div>
         </header>
     )

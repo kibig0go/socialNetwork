@@ -4,12 +4,14 @@ import {profileReducer} from "./reducer/profile_reducer";
 import {usersReducer} from "./reducer/users_reducer";
 import {headerReducer} from "./reducer/header_reducer";
 import thunkMiddleware from "redux-thunk"
+import {appReducer} from "./reducer/app_reducer";
 
 const reducers = combineReducers({
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
-    auth: headerReducer
+    auth: headerReducer,
+    app: appReducer
 })
 
 const store = createStore(reducers,
