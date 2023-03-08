@@ -3,6 +3,7 @@ import  s from "./ProfileDescription.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ava from "../../../assets/images/ava.png";
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusHooks from "./ProfileStatusHooks";
 
 
 
@@ -23,7 +24,7 @@ function ProfileDescription(props) {
             <div className={s.profile__descr}>
                 <div>
                     <h3>{props.userData.fullName}</h3>
-                    <ProfileStatus status={props.status}  updateStatus={props.updateStatus}/>
+                    <ProfileStatusHooks status={props.status}  updateStatus={props.updateStatus}/>
                 </div>
                 <div>
                     {/*<h3>date</h3>*/}
